@@ -1,7 +1,9 @@
 #ifndef DIM_H
 #define DIM_H
 #include <string>
- 
+#include <sstream>
+#include <iomanip>
+
 class Dim
 {
 private:

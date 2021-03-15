@@ -2,6 +2,7 @@
 #define ROI_H
 
 #include "Dim.h"
+#include <sstream>
 
 class Roi
 {
