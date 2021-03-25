@@ -4,7 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include "../../Globals.h"
-#include "./Subscriptions/Subscriptions.cpp"
+#include "./Subscriptions/Subscriptions.h"
 
 class CanCom
 {
@@ -13,14 +13,12 @@ private:
 	int m_startSendingTime;
 	int m_currentBits;
 	bool m_sending;
-	bool m_confirmation;
 public:
 	Subject *m_subject;
 	CanCom(int node = 0);
 	~CanCom();
 	std::string toString(DETAIL detail = DETAIL::LOW);
-	bool *send(int bits);
-	bool ready();
+	void send(int bits);
 	void update();
 };
 #endif

@@ -9,7 +9,6 @@ class PocketScan: public Scan
 private:
 public:
 	PocketScan(Roi roi, Filter filter, Averaging averaging, ScanState* state);
-	Type getType();
 };
 
 #endif

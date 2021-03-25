@@ -15,17 +15,19 @@ IdleScanState::~IdleScanState()
 void IdleScanState::start()
 {
   std::ostringstream oss;
-  oss << "IdleState handles start.\n";
+  oss << m_name << " handles start.\n";
   oss << " at " << ms << " ms.\n";
   std::cout << oss.str();
-  this->m_scan->transitionTo(new SettingUpScanState);
-  this->m_scan->start(); // call start again in new setting up state state.
+  SettingUpScanState* newState = new SettingUpScanState();
+  this->m_scan->transitionTo(newState);
+  newState->start(); // call state on the new state to continue.
+  // cant call start on this because this is not current any more!
 }
 
 void IdleScanState::stop()
 {
   std::ostringstream oss;
-  oss << "IdleState handles stop.\n";
+  oss << m_name << " handles stop.\n";
   oss << " at " << ms << " ms.\n";
   std::cout << oss.str();
 }

@@ -5,8 +5,3 @@ UprightScan::UprightScan(Roi roi, Filter filter, Averaging averaging, ScanState*
 	m_type = Scan::upright;
 	printDefinition();
 }
-
-Scan::Type UprightScan::getType()
-{
-	return m_type;
-}

@@ -7,16 +7,18 @@
 #include <string>
 #include "ScanState.h"
 #include "IdleScanState.h"
-#include "..\Subscriptions\Subcriptions.h"
+#include "ScanningState.h"
 
+class Observer;
 class SettingUpScanState : public ScanState {
  public:
     SettingUpScanState();
     ~SettingUpScanState();
     void start();
     void stop();
+    void onComReady();
   private:
-    Observer *m_observer;
+    Observer *m_ComObserver;
 };
 
 #endif

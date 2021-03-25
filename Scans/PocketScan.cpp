@@ -5,8 +5,3 @@ PocketScan::PocketScan(Roi roi, Filter filter, Averaging averaging, ScanState* s
 	m_type = Scan::pocket;
 	printDefinition();
 }
-
-Scan::Type PocketScan::getType()
-{
-	return m_type;
-}

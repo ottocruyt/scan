@@ -29,7 +29,7 @@ int main(int argc, char* argv[]){
 		static PocketScan myScan(roi, filter, averaging, new IdleScanState);
 		static CanCom canCom(37);
 		static CanCom* p_canCom = &canCom;
-		//static UprightScan myScan2(roi, filter, averaging);
+		//static UprightScan myScan2(roi, filter, averaging, new IdleScanState);
 		if(ms == 0)
 		{
 			myScan.setCom(p_canCom);
@@ -39,12 +39,11 @@ int main(int argc, char* argv[]){
 		if(ms==500)
 		{
 			myScan.start();
-
 		}
 
 		if(ms==8000)
 		{
-			//myScan.stop();
+			myScan.stop();
 		}
 
 

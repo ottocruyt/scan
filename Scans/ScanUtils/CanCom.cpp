@@ -31,19 +31,12 @@ std::string CanCom::toString(DETAIL detail)
 	return oss.str();
 }
 
-bool* CanCom::send(int bits)
+void CanCom::send(int bits)
 {
 	m_sending = true;
 	m_startSendingTime = ms;
 	m_currentBits = bits;
-	m_confirmation = false;
 	std::cout << "Start sending " << m_currentBits << " to node " << m_node << "." << std::endl;
-	return &m_confirmation;
-}
-
-bool CanCom::ready()
-{
-	return !m_sending;
 }
 
 void CanCom::update()
@@ -56,8 +49,7 @@ void CanCom::update()
 			{
 				std::cout << m_currentBits << " sent to node " << m_node << "." << std::endl;
 				m_sending = false;
-				m_confirmation = true;
-				m_subject->CreateMessage(std::string("CanCom: Message sent. Done with comm."));
+				m_subject->isReady(std::string("CanCom: Message sent. Done with comm."));
 			}
 		}
 	}

@@ -11,6 +11,7 @@ class ScanState
 		std::string m_name;
 		Scan* m_scan;
 	public:
+		ScanState();
 		virtual ~ScanState(){};
 		void set_context(Scan* scan);
 		virtual void start() = 0;

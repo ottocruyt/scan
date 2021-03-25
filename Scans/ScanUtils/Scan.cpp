@@ -7,9 +7,10 @@ size_t Scan::nrOfScans = 0;
 
 Scan::Scan(Roi roi, Filter filter, Averaging averaging, ScanState* scanState, CanCom *p_canCom) : m_roi(roi), m_filter(filter), m_averaging(averaging), m_canCom(p_canCom), m_scanState(nullptr)
 {
-	this->transitionTo(scanState);
-	nrOfScans++; // count the created scans
+	nrOfScans++; // count the active scans
 	m_id = nrOfScans;
+	m_type = Scan::unknown;
+	this->transitionTo(scanState);
 }
 
 Scan::~Scan()
@@ -52,29 +53,35 @@ Roi *Scan::getRoi()
 void Scan::start()
 {
 	std::ostringstream oss;
-	oss << toString() << " start command. \n";
+	oss << this->toString() << " start command. \n";
 	std::cout << oss.str();
 
-	m_scanState->start();
+	this->m_scanState->start();
 }
 
 void Scan::stop()
 {
 	std::ostringstream oss;
-	oss << toString() << " stop command. \n";
+	oss << this->toString() << " stop command. \n";
 	std::cout << oss.str();
 
 	m_scanState->stop();
 }
 
+Scan::Type Scan::getType()
+{
+	return m_type;
+}
+
+
 std::string Scan::getTypeStr()
 {
-	return typeString[m_type];
+	return typeString[(int)(this->getType())];
 }
 
 void Scan::printDefinition()
 {
-	std::cout << toString() << " defined at " << ms << " ms" << std::endl;
+	std::cout << this->toString() << " defined at " << ms << " ms" << std::endl;
 }
 
 void Scan::setCom(CanCom *canCom)
